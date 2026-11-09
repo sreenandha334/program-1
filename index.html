@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Growth Content Studio</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h2>GROW<span>TH.</span></h2>
+        <p>Content Writing & Marketing Studio</p>
+    </div>
+    <div class="admin">Admin Dashboard</div>
+</header>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <button class="active"
+        onclick="showSection('dashboard',this)">
+            Dashboard
+        </button>
+
+        <button onclick="showSection('content',this)">
+            Content Library
+        </button>
+
+        <button onclick="showSection('addContent',this)">
+            Create Content
+        </button>
+
+        <button onclick="showSection('campaigns',this)">
+            Campaigns
+        </button>
+
+    </aside>
+
+    <main>
+
+        <!-- DASHBOARD -->
+
+        <section id="dashboard" class="section active">
+
+            <h1>Dashboard</h1>
+
+            <p class="subtitle">
+                Manage your content and marketing activities.
+            </p>
+
+            <div class="stats">
+
+                <div class="stat-card">
+                    <p>Total Content</p>
+                    <h2 id="totalContent">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Drafts</p>
+                    <h2 id="draftCount">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Published</p>
+                    <h2 id="publishedCount">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Campaigns</p>
+                    <h2 id="campaignCount">0</h2>
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <h3>Recent Content</h3>
+
+                <br>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Platform</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="recentContent"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CONTENT LIBRARY -->
+
+        <section id="content" class="section">
+
+            <h1>Content Library</h1>
+
+            <p class="subtitle">
+                View and manage all your written content.
+            </p>
+
+            <div class="panel">
+
+                <input
+                    type="text"
+                    id="contentSearch"
+                    class="search"
+                    placeholder="Search content..."
+                    oninput="displayContent()"
+                >
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Platform</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="contentTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CREATE CONTENT -->
+
+        <section id="addContent" class="section">
+
+            <h1>Create Content</h1>
+
+            <p class="subtitle">
+                Write and organize your marketing content.
+            </p>
+
+            <div class="panel">
+
+                <form id="contentForm">
+
+                    <input type="hidden" id="editContentId">
+
+                    <label>Content Title</label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="Enter content title"
+                        required
+                    >
+
+                    <div class="form-grid">
+
+                        <div>
+
+                            <label>Content Category</label>
+
+                            <select id="category" required>
+
+                                <option value="">Select Category</option>
+                                <option>Blog Article</option>
+                                <option>Social Media Post</option>
+                                <option>Website Content</option>
+                                <option>SEO Article</option>
+                                <option>Email Marketing</option>
+                                <option>Product Description</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label>Platform</label>
+
+                            <select id="platform" required>
+
+                                <option value="">Select Platform</option>
+                                <option>Instagram</option>
+                                <option>Facebook</option>
+                                <option>LinkedIn</option>
+                                <option>Website</option>
+                                <option>Email</option>
+                                <option>Blog</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label>SEO Keywords</label>
+
+                            <input
+                                type="text"
+                                id="keywords"
+                                placeholder="Enter keywords"
+                            >
+
+                        </div>
+
+                        <div>
+
+                            <label>Content Status</label>
+
+                            <select id="status">
+
+                                <option>Draft</option>
+                                <option>In Review</option>
+                                <option>Published</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <label>Content Description</label>
+
+                    <textarea
+                        id="description"
+                        rows="7"
+                        placeholder="Write your content here..."
+                        required
+                    ></textarea>
+
+                    <button type="submit" class="primary-btn">
+                        Save Content
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <!-- CAMPAIGNS -->
+
+        <section id="campaigns" class="section">
+
+            <h1>Marketing Campaigns</h1>
+
+            <p class="subtitle">
+                Organize and manage content marketing campaigns.
+            </p>
+
+            <div class="panel">
+
+                <h3>Create New Campaign</h3>
+
+                <br>
+
+                <form id="campaignForm">
+
+                    <label>Campaign Name</label>
+
+                    <input
+                        type="text"
+                        id="campaignName"
+                        placeholder="Enter campaign name"
+                        required
+                    >
+
+                    <label>Campaign Description</label>
+
+                    <textarea
+                        id="campaignDescription"
+                        rows="3"
+                        placeholder="Describe the campaign"
+                    ></textarea>
+
+                    <label>Campaign Status</label>
+
+                    <select id="campaignStatus">
+                        <option>Planning</option>
+                        <option>Ongoing</option>
+                        <option>Completed</option>
+                    </select>
+
+                    <button type="submit" class="primary-btn">
+                        Add Campaign
+                    </button>
+
+                </form>
+
+            </div>
+
+            <div class="panel">
+
+                <h3>Campaign List</h3>
+
+                <br>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Campaign Name</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="campaignTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
